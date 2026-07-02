@@ -1,0 +1,17 @@
+{
+  "name": "gestion-stock",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/backend",
+    "apps/frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.20.0"
+  }
+}
