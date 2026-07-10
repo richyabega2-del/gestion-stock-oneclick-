@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const transfertController = require('../controllers/transfertController')
+const transfertController = require('../controllers/TransfertController')
 const authMiddleware = require('../middlewares/authMiddleware')
 
 router.get('/',              authMiddleware, transfertController.getTransferts)
