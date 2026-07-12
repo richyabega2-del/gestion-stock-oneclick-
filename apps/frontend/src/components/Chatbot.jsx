@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react"
+﻿import { useState, useEffect, useRef } from "react"
+import axios from "axios"
 
 function Chatbot() {
   const [ouvert, setOuvert] = useState(false)
@@ -22,15 +23,13 @@ function Chatbot() {
     setInput("")
     setLoading(true)
     try {
-      const response = await fetch("http://localhost:3000/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: historique.filter(m => m.role === "user" || m.role === "assistant").map(m => ({ role: m.role, content: m.content })) })
+      const { data } = await axios.post("/api/chat", {
+        messages: historique.filter(m => m.role === "user" || m.role === "assistant").map(m => ({ role: m.role, content: m.content }))
       })
-      const data = await response.json()
       setMessages(prev => [...prev, { role: "assistant", content: data.content || "Desole, erreur." }])
       if (!ouvert) setNonLus(prev => prev + 1)
     } catch (err) {
+      console.error("Erreur chatbot:", err)
       setMessages(prev => [...prev, { role: "assistant", content: "Erreur de connexion. Reessayez." }])
     } finally { setLoading(false) }
   }

@@ -54,7 +54,7 @@ const login = async (req, res) => {
         prenom: utilisateur.prenom,
         email: utilisateur.email,
         role: utilisateur.role,
-        siteId: utilisateur.site_id
+        site_id: utilisateur.site_id
       }
     })
   } catch (err) {
