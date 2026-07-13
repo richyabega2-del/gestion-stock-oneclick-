@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="houseGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff9d4d"/>
+      <stop offset="100%" stop-color="#ff6b00"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 6 L58 27 V56 H6 V27 Z" fill="url(#houseGrad)" stroke="#c94f00" stroke-width="1.5"/>
+  <path d="M32 6 L58 27 H50 L32 13 L14 27 H6 Z" fill="#ffb877"/>
+  <rect x="26" y="36" width="12" height="20" rx="1.5" fill="#ffffff"/>
+  <rect x="14" y="34" width="9" height="9" rx="1.5" fill="#ffe3c4"/>
+  <rect x="41" y="34" width="9" height="9" rx="1.5" fill="#ffe3c4"/>
+</svg>
