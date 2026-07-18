@@ -8,6 +8,7 @@ function Login() {
   const [motDePasse, setMotDePasse] = useState('')
   const [erreur, setErreur] = useState('')
   const [chargement, setChargement] = useState(false)
+  const [voirMdp, setVoirMdp] = useState(false)
   const navigate = useNavigate()
 
   const handleLogin = async (e) => {
@@ -53,23 +54,39 @@ function Login() {
             <input
               type="email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value.trim())}
               style={styles.input}
               placeholder="votre@email.com"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck="false"
               required
             />
           </div>
 
           <div style={styles.champ}>
             <label style={styles.label}>MOT DE PASSE</label>
-            <input
-              type="password"
-              value={motDePasse}
-              onChange={e => setMotDePasse(e.target.value)}
-              style={styles.input}
-              placeholder="••••••••"
-              required
-            />
+            <div style={{ position:'relative' }}>
+              <input
+                type={voirMdp ? 'text' : 'password'}
+                value={motDePasse}
+                onChange={e => setMotDePasse(e.target.value)}
+                style={{ ...styles.input, paddingRight:'40px' }}
+                placeholder="••••••••"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck="false"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setVoirMdp(!voirMdp)}
+                style={{ position:'absolute', right:'10px', top:'50%', transform:'translateY(-50%)', background:'none', border:'none', cursor:'pointer', fontSize:'16px', padding:'4px' }}
+                title={voirMdp ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
+              >
+                {voirMdp ? '🙈' : '👁️'}
+              </button>
+            </div>
           </div>
 
           {erreur && (

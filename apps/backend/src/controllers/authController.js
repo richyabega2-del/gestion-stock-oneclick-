@@ -26,7 +26,7 @@ const login = async (req, res) => {
   try {
     const { email, motDePasse } = req.body
     const result = await pool.query(
-      'SELECT * FROM utilisateurs WHERE email = $1 AND actif = true', [email]
+      'SELECT * FROM utilisateurs WHERE LOWER(email) = LOWER($1) AND actif = true', [email?.trim()]
     )
     if (result.rows.length === 0) {
       return res.status(401).json({ message: 'Email ou mot de passe incorrect' })
