@@ -98,13 +98,13 @@ function Dashboard() {
       const sitesToShow = siteActifId
         ? sitesRes.data.filter(s => s.id === siteActifId || s.id === parseInt(siteActifId))
         : sitesRes.data
-      const couleurs = ['#ff6b00', '#3b82f6', '#22c55e', '#a855f7']
-      const stockSite = sitesToShow.map((site, i) => {
-        const total = stocksRes.data
-          .filter(s => s.site_id === site.id)
-          .reduce((sum, s) => sum + (parseInt(s.quantite) || 0), 0)
-        return { nom: site.nom, valeur: total, couleur: couleurs[i % couleurs.length] }
-      })
+      const couleursParDefaut = ['#ff6b00', '#3b82f6', '#22c55e', '#a855f7']
+    const stockSite = sitesToShow.map((site, i) => {
+    const total = stocksRes.data
+    .filter(s => s.site_id === site.id)
+    .reduce((sum, s) => sum + (parseInt(s.quantite) || 0), 0)
+  return { nom: site.nom, valeur: total, couleur: site.couleur || couleursParDefaut[i % couleursParDefaut.length] }
+ })
       setStockParSite(stockSite)
 
       // Mouvements récents
@@ -197,11 +197,13 @@ function Dashboard() {
                 🌐 Tous les sites
               </div>
               {sites.map(s => (
-                <div key={s.id} style={styles.siteOption}
-                  onClick={e => { e.stopPropagation(); changerSite(s.id, s.nom) }}>
-                  📍 {s.nom}
-                </div>
-              ))}
+          <div key={s.id} style={styles.siteOption}
+        onClick={e => { e.stopPropagation(); changerSite(s.id, s.nom) }}>
+        <span style={{ display:'inline-block', width:'8px', height:'8px', borderRadius:'50%', backgroundColor: s.couleur || '#ff6b00', marginRight:'6px' }}></span>
+        {s.nom}
+  </div>
+))}
+              
             </div>
           )}
         </div>
